@@ -33,7 +33,7 @@ from langchain_community.vectorstores import FAISS
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 
-bedrock = boto3.client("bedrock-runtime")
+bedrock = boto3.client("bedrock-runtime", region_name='us-east-1')
 bedrock_embedding = BedrockEmbeddings(model_id = "amazon.titan-embed-text-v1",client = bedrock)
 
 # Data Ingestion
