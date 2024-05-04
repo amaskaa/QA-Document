@@ -5,6 +5,14 @@ import boto3
 import streamlit as st
 import pickle
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
+aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
+aws_region = os.getenv("AWS_REGION")
+
 st.set_page_config(page_title="Chat PDF", page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 
@@ -33,7 +41,8 @@ from langchain_community.vectorstores import FAISS
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 
-bedrock = boto3.client("bedrock-runtime", region_name='us-east-1')
+bedrock = boto3.client("bedrock-runtime", region_name='us-east-1',aws_access_key_id=aws_access_key_id,
+                       aws_secret_access_key=aws_secret_access_key)
 bedrock_embedding = BedrockEmbeddings(model_id = "amazon.titan-embed-text-v1",client = bedrock)
 
 # Data Ingestion
