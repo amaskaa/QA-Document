@@ -41,8 +41,8 @@ from langchain_community.vectorstores import FAISS
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 
-bedrock = boto3.client("bedrock-runtime", region_name='us-east-1',aws_access_key_id='AKIAZQ3DQVCULHVCJWYU',
-                       aws_secret_access_key='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')
+bedrock = boto3.client("bedrock-runtime", region_name='us-east-1',aws_access_key_id=aws_access_key_id,
+                       aws_secret_access_key=aws_secret_access_key)
 bedrock_embedding = BedrockEmbeddings(model_id = "amazon.titan-embed-text-v1",client = bedrock)
 
 # Data Ingestion
